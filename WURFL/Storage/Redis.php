@@ -52,6 +52,9 @@ class WURFL_Storage_Redis extends WURFL_Storage_Base {
         if (extension_loaded(self::EXTENSION_MODULE_NAME) && ($redis instanceof Redis)) {
             return true;
         }
+        if (extension_loaded(self::EXTENSION_MODULE_NAME) && class_exists('RedisCluster') && ($redis instanceof \RedisCluster)) {
+            return true;
+        }
         if (class_exists('\Predis\Client') && ($redis instanceof \Predis\Client)) {
             return true;
         }
